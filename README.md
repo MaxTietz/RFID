@@ -1,35 +1,67 @@
-MFRC522-python
-==============
-A small class to interface with the NFC reader Module MFRC522 on the Raspberry Pi.
-This is a Python port of the example code for the NFC module MF522-AN.
+SPI-Py: Hardware SPI as a C Extension for Python
+======
 
-**Important notice:** This library has not being actively updated in almost four years.
-It might not work as intended on more recent Raspberry Pi devices. You might want to 
-take a look to the open pull-requests and forks to see other implementations and bug-fixes.
+COPYRIGHT (C) 2012 Louis Thiery. All rights reserved. Further work by Connor Wolf.
 
-## Requirements
-This code requires you to have SPI-Py installed from the following repository:
-https://github.com/lthiery/SPI-Py
+Forked in 2019 by Nathan Leefer to fix memory handling in the C extension.
 
-## Examples
-This repository includes a couple of examples showing how to read, write, and dump data from a chip. They are thoroughly commented, and should be easy to understand.
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License V2 as published by the Free Software Foundation.
 
-## Pins
-You can use [this](http://i.imgur.com/y7Fnvhq.png) image for reference.
+LIABILITY  
+This program is distributed for educational purposes only and is no way suitable for any particular application, especially commercial. There is no implied suitability so use at your own risk!
 
-| Name | Pin # | Pin name   |
-|:------:|:-------:|:------------:|
-| SDA  | 24    | GPIO8      |
-| SCK  | 23    | GPIO11     |
-| MOSI | 19    | GPIO10     |
-| MISO | 21    | GPIO9      |
-| IRQ  | None  | None       |
-| GND  | Any   | Any Ground |
-| RST  | 22    | GPIO25     |
-| 3.3V | 1     | 3V3        |
+## Instructions
 
-## Usage
-Import the class by importing MFRC522 in the top of your script. For more info see the examples.
+1. Clone or download this repository, navigate to the SPI-Py directory, and install the library using the following command. Use python3 if installing for Python 3.
+<pre>
+> sudo python setup.py install
+</pre>
 
-## License
-This code and examples are licensed under the GNU Lesser General Public License 3.0.
+2. Make sure the SPI interface is enabled for your Raspberry Pi. This can be done using the raspi-config utility.
+<pre>
+> sudo raspi-config
+</pre>
+
+3. This module provides three functions for communicating with SPI devices:
+<pre>
+dev_dictionary = spi.openSPI(kwargs)
+data_in = spi.transfer(dev_dictionary, data_out)
+spi.closeSPI(dev_dictionary)
+</pre>
+
+The next section covers these in detail.
+
+## Example usage
+
+The below commands can be found in the [test_script.py](test_script.py) file.
+
+### After installing the library, import the spi module to your Python code via :
+<pre>
+import spi
+</pre>
+
+### Open the file descriptor to the SPI device with one of two chip selects:
+<pre>
+device_0 = spi.openSPI(device="/dev/spidev0.0",mode=0,speed=500000,bits=8,delay=0)
+</pre>
+The device keyword can be either "/dev/spidev0.0" or "/dev/spidev0.1". The difference refers to which chip select pin is used by the SPI device driver. The mode keyword can be 0,1,2, or 3, and many SPI devices can operate up to 8000000 Hz speed, however it is recommended to check your data sheet. See the [Raspberry Pi docs](https://www.raspberrypi.org/documentation/hardware/raspberrypi/spi/README.md) for a detailed explanation of these and other parameters.
+
+### Use the returned device handle to conduct an SPI transaction
+<pre>
+data_out = (0xFF,0x00,0xFF)
+data_in = (0x00, 0x00, 0x00)
+data_in = spi.transfer(device_0, data_out)
+</pre>
+
+The above would write the 3 bytes contained in data_out and copy the received data to data_in. Note that data_in will always be a tuple the same length as data_out, and will simply reflect the state of the MISO pin throughout the transaction. It is up to the user to understand the device behavior connected to the SPI pins.
+
+To verify that this works connect GPIO 10 (MOSI, physical pin 19) to GPIO 9 (MISO, physical pin 21) in a loop back. You should see that data_out now equals data_in.
+
+### Close the file descriptor for your SPI device
+<pre>
+spi.closeSPI(device_0)
+</pre>
+
+## Memory leak
+
+The [memory_leak.py](/memory_leak.py) script continuously executes a simple transaction on /dev/spidev0.0. There does not appear to be a memory leak in this use case.
