@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap 4 Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Latest Fontawesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>  
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#"><i class="fab fa-raspberry-pi"></i> Start</a>
+        <!-- Links -->
+        <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Chip</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Users</a>
+        </li>          
+        </ul>
+    </nav> 
+
+    <div class="container-fluid">
+        <h1>New RFID</h1>
+
+        <div class="row">
+        <div class="col-sm-2"> 
+        <input type="radio" name="gender" value="male"> Neuer Benutzer</div>
+                    <div class="col-sm-3">  
+                        <input type="radio" onclick=myFunction() name="gender" value="male"> Vorhandener Benutzer<br>
+                        <script>
+                        function myFunction()
+                        {
+                            $('view_deatils').hide();
+                           
+                        };
+                        </script>
+                    <div class="form-group"> 
+                        
+                </div>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-sm-1"><i class="fas fa-user"></i></div>
+            <div class="col-sm-3"> 
+                <div class="form-group">                     
+                    <select class="form-control" id="sel1">
+                        <option>Justin Krause</option>
+                        <option>Dierk Zehe </option>
+                        <option>Max Tietz</option>
+                        <option>Daniel Beck</option>
+                    </select>
+                </div> 
+            </div>              
+        </div>
+        <div class="row">
+            <div class="col-sm-4"> 
+                    <div class="textbox">                     
+                            <input type="text" class="form-control form-control disabled" placeholder="Name">
+                            
+                        </select>
+                    </div> 
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-sm-4"> 
+                    <div class="form-group">                     
+                            <input type="text" class="form-control form-control disabled" placeholder="Nachname" id="view_details">
+
+                            
+                       
+                    </div> 
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-4"> 
+                        <div class="form-group">                     
+                                <input type="password" class="form-control form-control disabled"placeholder="Passwort" >
+                                
+                           
+                        </div> 
+                    </div>
+            </div>
+        <div class="row">
+                <div class="col-sm-2"> 
+                        <div class="form-group">                     
+                            <div> 
+                                <button type="button" class="btn btn-danger btn-block">Cancel</button>
+                            </div>
+                        </div> 
+                </div>
+                <div class="col-sm-2"> 
+                        <div class="form-group">                     
+                            <div> 
+                                <button type="button" class="btn btn-success btn-block">Submit</button>
+                            </div>
+                        </div> 
+                </div>
+        </div>
+
+    </div>
+
+    
+
+</body>
+</html> 
