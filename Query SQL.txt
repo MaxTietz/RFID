@@ -1,0 +1,23 @@
+SELECT * FROM `rfid` WHERE RFID =123456789; //überprüfung des Vorhandeseins der rfid
+
+SELECT Name, LastName From `user`; // Anzeige des Namens und Nachnamens
+
+SELECT Name From `action`; // Actionauswahl
+
+INSERT INTO rfid (ID,RFID,UserID) VALUES(1,123,1); //2. rfidaction anlegen (actionID, Rfid)
+
+INSERT INTO action (ActionID,Name,Description) VALUES(1,123,1); //Neuen RFID-Chip Anlegen (userid + rfid)
+
+INSERT INTO user (UserID,Name,Description) VALUES(1,123,1);
+
+INSERT INTO action (ActionID,Name,Description,CreatedAt,`Path`,UpdatedAt,Enabled) VALUES(233,'bla','Bla','1900-01-01 00:00:00','path','1900-01-01 00:00:00',1);
+
+INSERT INTO user (UserID,Name,Lastname,Email,Username,Password,CreatedAt,UpdatedAt,Enabled) VALUES(233,'Fritz','Klein','bla@bla','Fritzkle','root','1900-01-01 00:00:00','1900-01-01 00:00:00',1); //1. Neuen Nutzer anlegen
+//Chip-Seite
+
+INSERT INTO rfid (UserID) VALUES(100) //2. rfid-chip dem Nutzer zuweisen
+
+
+
+
+
