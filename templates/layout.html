@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include 'includes/head.html' %}
+  </head>
+  <body>
+    {% include 'includes/_navbar.html' %}
+    <div id = "content" class="jumbotron text-center">
+      <div class="container">
+        {% block body %}{% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

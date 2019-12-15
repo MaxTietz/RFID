@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block chips_body %}
+<h1><i class="fas fa-tag"></i> Chip Administration</h1>
+<div class="row justify-content-center">
+    <div class="col-sm-1">ID: </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <input type="text" class="form-control" disabled>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-sm-1"><i class="fas fa-user"></i></div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <select class="form-control" id="sel1">
+                <option value="-">Choose User...</option>
+                <option value="Justin">Justin</option>
+                <option value="Dierk">Dierk</option>
+                <option value="Max">Max</option>
+                <option value="Daniel">Daniel</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div id="actions">
+    <div class="row selection justify-content-center">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <select class="form-control selection-action" id="action1">
+                    <option value="-">Choose Action...</option>
+                    <option value="Action 1">Start Spotify</option>
+                    <option value="Action 2">Open Browser</option>
+                    <option value="Action 3">Reboot PC</option>
+                    <option value="Action 4">Start Solitär</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-sm-2">
+        <div class="form-group">
+            <div>
+                <button type="button" class="btn btn-danger btn-block"><i class="fas fa-times"></i> Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="form-group">
+            <div>
+                <button type="button" class="btn btn-success btn-block" onclick="getValues()"><i
+                        class="fas fa-check"></i> Submit</button>
+                <script>
+                    function getValues() {
+                        _rfid = 1; // Demo Data
+                        //username = document.getElementById('sel1').value;
+                        //_action = document.getElementById('action1').value;
+                        _action = 1;
+                        $.post("chips", { action_id: _action, rfid: _rfid });
+                        return username, action;   // The function returns the product of p1 and p2
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

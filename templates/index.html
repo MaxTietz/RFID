@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block body %}    
+    
+        <h1><i class="fas fa-book-open"></i> Read RFID-Chip</h1>
+        <p>Please place a RFID-Chip onto the RFID-Reader.</p>
+        <p>You will be redirected for further steps.</p>
+        <button class="btn btn-dark" disabled>
+                <span id="spinner" class="spinner-grow spinner-grow-sm"></span>
+                Waiting for RFID-Chip...
+        </button>    
+
+    <script>
+        //Set the socket object
+        var socket = io.connect('http://192.168.178.34:5000/');
+        // This will run on page load 
+        $(document).ready(function() {
+            console.log("ready");
+            connect();      
+        });
+
+        //Establish connection to server
+        function connect(){
+            socket.emit('connect');
+            console.log('connected');
+        };
+        
+        function loadrfid(){
+            socket.on('message', function(msg){
+                socket.send('Read RFID');
+            });
+        };
+
+        
+    </script>
+
+{% endblock %}

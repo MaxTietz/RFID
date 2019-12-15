@@ -1,0 +1,181 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<script>
+$(document).ready(function(){
+  $('input[type=radio]').click(function(){
+    if (document.querySelector('input[name="user"]:checked').value == "new") {
+      $('.existing').addClass("d-none");
+      $('.new').removeClass("d-none");
+    } else if (document.querySelector('input[name="user"]:checked').value == "existing") {
+      $('.new').addClass("d-none");
+      $('.existing').removeClass("d-none");
+    }
+  });
+});
+</script>
+
+<div class="container-fluid">
+    <h1>Administration</h1>
+
+<div class="row justify-content-center">
+<div class="col-sm-4 justify-content-center">
+      <label class="sr-only" for="inlineFormInputGroup">RFID</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fas fa-tag"></i></div>
+        </div>
+        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="RFID" disabled>
+      </div>
+    </div>
+</div>
+</div>
+    <div class="row justify-content-center">
+        <div class="col-sm-2">
+            <input type="radio" name="user" value="new"> New User
+        </div>
+        <div class="col-sm-2">
+            <input type="radio" onclick=myFunction() name="user" value="existing"> Existing User<br>
+            <script>
+                function myFunction() {
+                    $('view_deatils').hide();
+                };
+            </script>
+            <div class="form-group">
+            </div>
+        </div>
+    </div>
+    <div class="row existing justify-content-center">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <select class="form-control">
+                    <option>Select User</option>
+                    <option>Justin Krause</option>
+                    <option>Dierk Zehe</option>
+                    <option>Max Tietz</option>
+                    <option>Daniel Beck</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+<div class="row justify-content-center">
+<div class="col-sm-4 justify-content-center">
+      <label class="sr-only" for="inlineFormInputGroup">Name</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fab fa-accessible-icon"></i></div>
+        </div>
+        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Name">
+      </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+<div class="col-sm-4 justify-content-center">
+      <label class="sr-only" for="inlineFormInputGroup">Second Name</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fab fa-accessible-icon"></i></div>
+        </div>
+        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Second Name">
+      </div>
+    </div>
+</div>
+
+
+<div class="row justify-content-center">
+    <div class="col-sm-4 justify-content-center">
+        <label class="sr-only" for="inlineFormInputGroup">Device Username</label>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">@</div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Device Username">
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-sm-4 justify-content-center">
+        <label class="sr-only" for="inlineFormInputGroup">Device Username</label>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">IP</div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Device IP Address">
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+<div class="col-sm-4 justify-content-center">
+      <label class="sr-only" for="inlineFormInputGroup">Device Password</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fas fa-key"></i></div>
+        </div>
+        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Device Password">
+      </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+<div class="col-sm-4 justify-content-center">
+      <label class="sr-only" for="inlineFormInputGroup">Confirm Device Password</label>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fas fa-key"></i></div>
+        </div>
+        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Confirm Device Password">
+      </div>
+    </div>
+</div>
+
+    <div id="actions">
+        <div class="row selection justify-content-center">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <select class="form-control selection-action">
+                        <option value="-">Select Action</option>
+                        <option value="Action 1">start Spotify</option>
+                        <option value="Action 2">open Browser</option>
+                        <option value="Action 3">reboot PC</option>
+                        <option value="Action 4">start Solitaire</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-sm-2">
+            <div class="form-group">
+                <div>
+                    <button type="button" class="btn btn-danger btn-block" onclick="window.location.href='/'">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <div>
+                    <button type="button" class="btn btn-success btn-block" onclick="getValues()"><i
+                            class="fas fa-check"></i> Submit</button>
+                    <script>
+                        function getValues() {
+                            _rfid = 1; // Demo Data
+                            _action = 1;
+                            _name = 'Peter';
+                            _lastName = 'Enis';
+                            _password = '123';
+                            window.console.log("Test");
+                            //username = document.getElementById('sel1').value;
+                            //_action = document.getElementById('action1').value;
+                            $.post("administration", { action_id: _action, rfid: _rfid, name: _name, lastname: _lastName, password: _password });
+                            return 1;   // The function returns the product of p1 and p2;
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

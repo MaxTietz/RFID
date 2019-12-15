@@ -1,0 +1,5 @@
+First setup the virtual environment
+    1. Open Terminal
+    2. type: source env/bin/activate in the Terminal
+    3. Start the Server with "python server.py"
+    4. Open your Explorer and type: http://(Your IP):5000/
